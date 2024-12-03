@@ -4,11 +4,12 @@ import {
   getBlogController,
   getBlogsController,
 } from "../controllers/blog.controller";
+import { verifyToken } from "../lib/jwt";
 
 const router = express.Router();
 
 router.get("/", getBlogsController);
 router.get("/:id", getBlogController);
-router.post("/", createBlogController);
+router.post("/", verifyToken, createBlogController);
 
 export default router;
